@@ -12,6 +12,9 @@ datos_docker/redis/
 *.sql.back
 *.sql.backup
 
+# === Documentacion Global del Proyecto ===
+documentacion/
+
 # === Archivos de configuración sensibles (Global) ===
 secrets.json
 *.pem
