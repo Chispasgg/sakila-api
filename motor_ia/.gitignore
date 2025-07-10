@@ -1,0 +1,136 @@
+# ===================================
+# MOTOR IA - PYTHON PROJECT
+# ===================================
+
+# === Documentacion ===
+documentacion/
+
+# === Python específico ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+
+# === Virtual environments ===
+venv/
+env/
+.venv/
+.env
+
+# === Testing específico ===
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# === Linting y type checking ===
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# === Build artifacts ===
+dist/
+build/
+
+# === Logs específicos ===
+*.log
+logs/
+
+# === Docker específico del motor IA ===
+docker/.env
+docker/docker-compose.prod.yml
+docker/.dockerignore
+
+# === Modelos y datos temporales ===
+models/temp/
+data/temp/
+*.pkl
+*.joblib
+
+# === IDE específico ===
+.vscode/
+.idea/
+
+# === Jupyter notebooks checkpoints ===
+.ipynb_checkpoints/
+
+# === FastAPI específico ===
+.pytest_cache/
+test-results/
+
+# === Archivos de Backup ===
+*.backup
+*.bak
+*.back
+*.old
+*.orig
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+*.rej
+*.py.backup
+*.py.bak
+
+# === Machine Learning específico ===
+# Modelos entrenados
+*.model
+*.pkl
+*.joblib
+*.h5
+*.hdf5
+*.pb
+*.onnx
+*.pt
+*.pth
+
+# Datasets y datos temporales
+data/
+datasets/
+*.csv.cache
+*.parquet
+*.feather
+
+# === FastAPI específico ===
+# Archivos de sesión y uploads
+uploads/
+sessions/
+static/uploads/
+
+# === Base de datos local ===
+*.db
+*.sqlite
+*.sqlite3
+
+# === Configuración sensible adicional ===
+.env.production
+.env.staging
+config/local.py
+config/production.py
+
+# === Profiling y debugging ===
+*.prof
+*.trace
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# === OS específicos adicionales ===
+# Windows
+desktop.ini
+*.lnk
+
+# macOS
+.DS_Store?
+.Spotlight-V100
+.Trashes
+
+# === Scripts temporales ===
+test_*.py
+debug_*.py
+tmp_*.py

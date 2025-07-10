@@ -1,0 +1,67 @@
+# ===================================
+# SAKILA AI API - NestJS PROJECT
+# ===================================
+
+# === Documentacion ===
+documentacion/
+
+# === NestJS & Node.js Específico ===
+node_modules/
+dist/
+build/
+package-lock.json
+
+# === Configuración local ===
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# === IDE específico para este proyecto ===
+.vscode/
+.idea/
+
+# === Prisma específico ===
+prisma/dev.db
+prisma/*.db
+prisma/*.db-journal
+/generated/prisma/
+
+# === Logs específicos del API ===
+logs/
+*.log
+
+# === Testing específico ===
+coverage/
+test-results/
+junit.xml
+
+# === Build artifacts específicos ===
+*.tsbuildinfo
+webpack-hmr.json
+
+# === Optimizaciones temporales ===
+optimizaciones/temp/
+optimizaciones/*.tmp
+
+# === Docker específico del API ===
+docker-compose.override.yml
+.dockerignore
+
+# === Archivos de Backup ===
+*.backup
+*.bak
+*.back
+*.old
+*.orig
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+*.rej
+schema.prisma.backup
+schema.prisma.new.backup
+*.sql.back
+*.sql.backup

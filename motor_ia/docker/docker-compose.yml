@@ -1,0 +1,28 @@
+services:
+  # API Motor de IA
+  motor_ia_api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: motor_ia_api
+    ports:
+      - "2207:2207"
+    environment:
+      # Variables de entorno para la conexión a la base de datos
+      - DATABASE_URL=postgresql://postgres:password@localhost:5432/sakila
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_NAME=sakila
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - ENVIRONMENT=development
+    networks:
+      - motor_ia_network
+    volumes:
+      # Para desarrollo: montar el código fuente para hot reload
+      - ../src:/app/src
+    restart: unless-stopped
+
+networks:
+  motor_ia_network:
+    driver: bridge
