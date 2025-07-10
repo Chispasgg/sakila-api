@@ -1,0 +1,68 @@
+services:
+  sakila-ai-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.sakila-ai-api
+    container_name: sakila_ai_api
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/sakila
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ML_SERVICE_BASE_URL=http://motor_ia:2207
+      - PORT=3000
+      - DEBUG_MODE=true
+      - CACHE_TTL=1800
+      - SWAGGER_ENABLED=true
+    depends_on:
+      - db
+      - redis
+    restart: unless-stopped
+
+  motor_ia:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.motor_ia
+    container_name: motor_ia_api
+    ports:
+      - "2207:2207"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/sakila
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=sakila
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - ENVIRONMENT=production
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: sakila
+    ports:
+      - "5432:5432"
+    volumes:
+      - ../datos_docker/postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ../datos_docker/redis/redis-data:/data
+      - ../datos_docker/conf_redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
