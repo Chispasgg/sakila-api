@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cd ..
+cp .env.example .env
 echo " Sakila AI Recommendation Engine API"
 echo "======================================"
 echo ""
