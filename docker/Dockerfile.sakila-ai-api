@@ -1,0 +1,21 @@
+# Dockerfile para sakila-ai-api (Node.js)
+FROM node:22.14.0-slim
+
+LABEL maintainer "Patxi GG"
+
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt autoremove -y
+RUN apt-get install -y curl openssl
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+WORKDIR /usr/src/app
+
+COPY ../../sakila-ai-api/package*.json ./
+RUN npm install
+
+COPY ../../sakila-ai-api .
+RUN npm run build
+RUN npx prisma generate
+EXPOSE 3000
+CMD ["node", "dist/main.js"]
