@@ -56,6 +56,8 @@ setup_environment() {
     fi
     echo "✅ Servicios Docker iniciados"
     
+    sleep 10  # Esperar a que los servicios se levanten correctamente
+
     # 2. Configurar base de datos Sakila
     echo "📊 Configurando base de datos Sakila..."
     cd ../sql_files || { echo "❌ Error: No se pudo cambiar al directorio sql_files."; exit 1; }
