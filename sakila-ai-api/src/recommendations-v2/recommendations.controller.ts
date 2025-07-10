@@ -34,7 +34,7 @@ export class RecommendationsController {
 
   @UseInterceptors(CacheInterceptor)
   @CacheTTL(1800) // Cache for 30 minutes
-  @ApiQuery({ name: 'focus', required: false, type: String, enum: ['actors', 'genres', 'language', 'rating'], description: 'Optional focus for recommendations (e.g., actors, genres)' })
+  @ApiQuery({ name: 'focus', required: false, type: String, enum: ['actors', 'languages', 'ratings'], description: 'Optional focus for recommendations (e.g., actors, genres)' })
   @Get(':id/recommendations-v2')
   async getRecommendationsV2(
     @Param('id', ParseIntPipe) id: number,
@@ -51,6 +51,13 @@ export class RecommendationsController {
     @Query('focus', FocusValidationPipe) focus?: string,
   ) {
     return this.externalRecommendationsService.getRecommendationsFromExternalApi(id, focus);
+  }
+
+  @Get(':id/recommendations-external-v2')
+  async getExternalRecommendationsV2(
+    @Param('id', ParseIntPipe) id: number,    
+  ) {
+    return this.externalRecommendationsService.getRecommendationsFromExternalApiV2(id);
   }
 
   

@@ -36,4 +36,24 @@ export class ExternalRecommendationsService {
       throw new Error(`Failed to get recommendations from external API: ${error.message}`);
     }
   }
+
+  async getRecommendationsFromExternalApiV2(customerId: number): Promise<any> {
+    const url = `${this.ML_SERVICE_BASE_URL}/fulltext-recommendations`;
+    const params: any = { user_id: customerId };
+
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get(url, {
+          params,
+          headers: {
+            'Accept': 'application/json',
+          },
+        }),
+      );
+      return response.data;
+    } catch (error) {
+      // Manejo de errores: puedes loguear el error, lanzar una excepción HTTP, etc.
+      throw new Error(`Failed to get recommendations from external API: ${error.message}`);
+    }
+  }
 }
